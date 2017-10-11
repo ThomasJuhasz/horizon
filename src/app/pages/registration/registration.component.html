@@ -1,0 +1,40 @@
+<div class="registration-container">
+
+  <div class="col-lg-4 col-lg-offset-4 col-sm-6 col-sm-offset-3">
+    <div class="section-title">
+      <h1>{{'registration.title' | i18n}}</h1>
+    </div>
+  </div>
+
+  <form action="#" method="post" #f="ngForm" novalidate>
+    <div class="col-lg-4 col-lg-offset-4 col-sm-6 col-sm-offset-3">
+
+      <div class="single-field">
+        <input type="email" [placeholder]="'registration.email' | i18n" name="username" [(ngModel)]="model.username" #username="ngModel"
+          required />
+        <i class="zmdi zmdi-email"></i>
+      </div>
+      <div *ngIf="f.submitted && !username.valid" class="help-block">Username is required</div>
+
+      <div class="single-field">
+        <input type="password" [placeholder]="'registration.password' | i18n" class="form-control" name="password" [(ngModel)]="model.password"
+          #password="ngModel" required />
+        <i class="zmdi zmdi-lock"></i>
+      </div>
+      <div *ngIf="f.submitted && !password.valid" class="help-block">Password is required</div>
+    </div>
+  </form>
+  <div class="col-lg-4 col-lg-offset-4 col-sm-6 col-sm-offset-3">
+    <app-ajax-button [params]="registerButtonParams"></app-ajax-button>
+    <div class="already-have-account-container">
+      <span>{{'registration.already_have_an_account' | i18n}}</span>
+      <a routerLink="/login">{{'registration.log_in' | i18n}}</a>
+    </div>
+    <div *ngIf="!!error">
+      <div style="color: green">//TODO: need specific error message for each use case, change to user friendly error messages</div>
+      <div>
+        {{error | json}}
+      </div>
+    </div>
+  </div>
+</div>

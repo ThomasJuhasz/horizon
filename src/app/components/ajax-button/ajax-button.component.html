@@ -1,0 +1,6 @@
+<div class="ajax-button" #button (click)="save(button)" [class.success]="state===States.success" [class.error]="state === States.error">
+  <div class="fa fa-check done" [class.success]="state === States.success"></div>
+  <div class="fa fa-close error" [class.error]="state === States.error"></div>
+  <input class="submit" id="submit" type="button" value="{{params.title}}" [class.loading]="state === States.loading" [class.hide-loading]="state === States.success || state === States.error"
+  />
+</div>
